@@ -1,0 +1,17 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php_version: ['7.4', '8.1']
+
+    steps:
+    - uses: actions/checkout@v3
+    - uses: php-actions/composer@v6
+      with:
+        php_extensions: intl
+        php_version: ${{ matrix.php_version }}
